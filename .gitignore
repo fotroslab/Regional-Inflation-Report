@@ -1,0 +1,16 @@
+# تله‌متری Streamlit — هرگز commit نشود
+.streamlit/machine_id_v4
+
+# پایتون
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# محیط مجازی
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db

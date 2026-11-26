@@ -36,82 +36,123 @@ def load_css():
     st.markdown(f"""<style>
 {css_fonts}
 :root{{
-  --bg:#f7f6f3; --surface:#ffffff; --ink:#20303a; --ink-strong:#17252d;
-  --muted:#64757c; --faint:#8d979b;
-  --brand:#0f4c5c; --brand-deep:#123a47; --brand-soft:#eaf1f1;
-  --accent:#d95d4e; --accent-soft:#faf1ee;
-  --hair:#e7e5e0; --hair-strong:#d9d7d1;
-  --radius:12px; --shadow:0 1px 2px rgba(23,37,45,.05), 0 6px 22px rgba(23,37,45,.05);
+  --bg:#f3f4f8; --surface:#ffffff; --ink:#232a35; --ink-strong:#16202c;
+  --muted:#66707e; --faint:#98a1ad;
+  --brand:#0f4c5c; --brand-deep:#0b3a47; --brand-darker:#0a2f3a;
+  --brand-soft:#e8f1f1; --accent:#e3645f; --accent-soft:#fdecea;
+  --gold:#d9a441; --gold-soft:#fbf3e1;
+  --hair:#e6e7ec; --hair-strong:#d8d9df;
+  --radius:16px; --shadow:0 1px 2px rgba(22,32,44,.05), 0 10px 28px rgba(22,32,44,.07);
 }}
 body, .stApp {{
-  background:
-    radial-gradient(1100px 520px at 88% -12%, rgba(15,76,92,.055), transparent 62%),
-    var(--bg);
-  direction: rtl; text-align: right; color: var(--ink);
+  background: var(--bg); direction: rtl; text-align: right; color: var(--ink);
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
   font-feature-settings: "tnum" 1;
 }}
-.block-container {{ padding: 1.15rem 2.4rem 2.3rem; max-width: 1180px; direction: rtl; }}
+.block-container {{ padding: .9rem 1.6rem 2rem; max-width: 1200px; direction: rtl; }}
 .rtl {{ direction: rtl; text-align: right; }}
 .js-plotly-plot, .js-plotly-plot * {{ direction: ltr; }}
 pre, code, kbd, samp {{ direction: ltr; text-align: left; unicode-bidi: embed; }}
 
-.eyebrow {{ font-size:.66rem; color:var(--muted); font-weight:700; letter-spacing:.05em; margin:.05rem 0 .2rem; }}
-.report-title {{ font-size:1.4rem; line-height:1.65; font-weight:800; color:var(--ink-strong); margin:0 0 .12rem; letter-spacing:-.01em; }}
-.sub {{ color:var(--muted); font-size:.77rem; margin:0 0 .85rem; }}
-.card h3 {{ font-size:.85rem; color:var(--ink-strong); font-weight:800; margin:.05rem 0 .55rem; }}
-.prose p, .prose li {{ font-size:.82rem; line-height:1.95; color:var(--ink); }}
-.prose h3 {{ font-size:.84rem; color:var(--ink-strong); font-weight:800; margin:.85rem 0 .3rem; padding-bottom:.3rem; border-bottom:1px solid var(--hair); }}
+/* ---------- Hero (کارت سربرگ) ---------- */
+.hero {{ background: var(--surface); border: 1px solid var(--hair); border-radius: var(--radius);
+        padding: .95rem 1.15rem .85rem; box-shadow: var(--shadow); margin-bottom: .85rem; }}
+.hero-eyebrow {{ display:inline-flex; align-items:center; gap:.4rem; font-size:.63rem; font-weight:800;
+  color: var(--brand); background: var(--brand-soft); border:1px solid #d5e4e4;
+  border-radius: 999px; padding: .16rem .65rem; }}
+.hero-title {{ font-size:1.32rem; line-height:1.7; font-weight:800; color: var(--ink-strong);
+  margin: .42rem 0 .12rem; padding-right: .62rem; border-right: 4px solid var(--brand); }}
+.hero-sub {{ color: var(--muted); font-size:.73rem; line-height:1.85; margin: 0 .62rem; }}
+.hero-meta {{ display:flex; gap:.45rem; flex-wrap:wrap; margin-top:.55rem; }}
+.meta-pill {{ display:inline-flex; align-items:center; gap:.38rem; font-size:.64rem; color:var(--muted);
+  background:#fff; border:1px solid var(--hair); border-radius:999px; padding:.2rem .62rem; }}
+.meta-pill b {{ color: var(--ink-strong); font-weight:800; }}
+.meta-dot {{ width:6px; height:6px; border-radius:50%; background: var(--brand); flex:none; }}
+.meta-dot.gold {{ background: var(--gold); }}
+
+/* ---------- KPI ---------- */
+.kpi {{ background: var(--surface); border:1px solid var(--hair); border-radius: var(--radius);
+        padding:.68rem .9rem .62rem; box-shadow: var(--shadow); direction:rtl; text-align:right; height:100%; }}
+.kpi-top {{ display:flex; align-items:center; justify-content:space-between; gap:.5rem; }}
+.kpi .lbl {{ font-size:.66rem; color:var(--muted); font-weight:700; }}
+.tag {{ display:inline-flex; align-items:center; font-size:.56rem; font-weight:800; border-radius:999px;
+  padding:.13rem .5rem; white-space:nowrap; }}
+.tag.teal {{ background:var(--brand-soft); color:var(--brand); }}
+.tag.coral {{ background:var(--accent-soft); color:#c94f42; }}
+.tag.gold {{ background:var(--gold-soft); color:#a97a22; }}
+.tag.slate {{ background:#eef0f4; color:#4a5568; }}
+.kpi .val {{ font-size:1.62rem; font-weight:800; color:var(--ink-strong); line-height:1.6; margin:.14rem 0 .02rem; }}
+.kpi.hot .val {{ color:#c94f42; }}
+.kpi .sub {{ font-size:.63rem; color:var(--faint); line-height:1.75; }}
+
+/* ---------- کارت عمومی ---------- */
+.card {{ background: var(--surface); border:1px solid var(--hair); border-radius: var(--radius);
+        padding: .85rem .95rem; box-shadow: var(--shadow); direction:rtl; text-align:right; }}
+.card-title {{ font-size:.82rem; font-weight:800; color:var(--ink-strong); margin:.05rem 0 .15rem; }}
+.card-sub {{ font-size:.64rem; color:var(--muted); margin-bottom:.4rem; }}
+
+/* ---------- prose (صفحهٔ درباره) ---------- */
+.prose p, .prose li {{ font-size:.8rem; line-height:1.98; color:var(--ink); }}
+.prose h3 {{ font-size:.8rem; color:var(--ink-strong); font-weight:800; margin:.85rem 0 .32rem;
+  padding-bottom:.32rem; border-bottom:1px solid var(--hair); }}
 .prose ul {{ padding-right:1.1rem; margin:.2rem 0 .35rem; }}
-.prose code {{ background:#efeee9; border-radius:5px; padding:1px 6px; font-size:.71rem; }}
+.prose code {{ background:#efeff2; border-radius:5px; padding:1px 6px; font-size:.7rem; }}
 
-.card {{ background:var(--surface); border:1px solid var(--hair); border-radius:var(--radius);
-        padding:.85rem .95rem; box-shadow:var(--shadow); direction:rtl; text-align:right; }}
-.kpi {{ background:var(--surface); border:1px solid var(--hair); border-radius:var(--radius);
-        padding:.72rem .9rem .65rem; box-shadow:var(--shadow); direction:rtl; text-align:right;
-        position:relative; overflow:hidden; }}
-.kpi::before {{ content:""; position:absolute; top:0; right:0; left:0; height:3px; background:transparent; }}
-.kpi .lbl {{ font-size:.65rem; color:var(--muted); font-weight:700; }}
-.kpi .val {{ font-size:1.62rem; font-weight:800; color:var(--brand-deep); line-height:1.6; margin:.08rem 0 .02rem; }}
-.kpi .sub {{ font-size:.65rem; color:var(--faint); }}
-.kpi.accent::before {{ background:var(--accent); }}
-.kpi.accent .val {{ color:var(--accent); }}
-.kpi.neutral::before {{ background:var(--brand); opacity:.4; }}
-
-.legend-wrap {{ direction:rtl; text-align:right; margin-top:.45rem; }}
+/* ---------- legenda ---------- */
+.legend-wrap {{ direction:rtl; text-align:right; margin-top:.5rem; }}
 .legend-bar {{ height:9px; border-radius:5px; border:1px solid var(--hair-strong);
-  background: linear-gradient(to right, #10424f 0%, #2e5f6e 22%, #5d8690 40%, #93b0b4 58%, #c3d3d3 76%, #eef0ec 100%); }}
-.legend-labels {{ display:flex; justify-content:space-between; font-size:.65rem; color:var(--muted); margin-top:.28rem; }}
+  background: linear-gradient(to right, #e8f1f1 0%, #bcd4d6 22%, #8db4bb 40%, #5b8f9c 58%, #2e6b7e 79%, #0f4c5c 100%); }}
+.legend-labels {{ display:flex; justify-content:space-between; font-size:.63rem; color:var(--muted); margin-top:.28rem; }}
 
-[data-testid="stSidebar"] {{ background: linear-gradient(178deg, #153c4b 0%, #102e3a 78%, #0e2a34 100%);
-  direction: rtl; text-align: right; }}
-[data-testid="stSidebar"] * {{ color: #e6ecea !important; }}
-.brand {{ padding:.3rem .35rem .1rem; }}
-.brand-name {{ font-size:1.02rem; font-weight:800; color:#f4f7f6 !important; letter-spacing:-.01em; }}
-.brand-meta {{ font-size:.6rem; color:#8fa9a9 !important; margin-top:.18rem; line-height:1.75; }}
-.micro-label {{ font-size:.58rem; color:#7e9799 !important; font-weight:800; letter-spacing:.13em; margin:1.15rem .35rem .3rem; }}
-[data-testid="stSidebar"] [role="radiogroup"] {{ gap:.1rem; }}
+/* ---------- sidebar روشن + کارت برند ---------- */
+[data-testid="stSidebar"] {{ background:#ffffff; direction:rtl; text-align:right; border-left:1px solid var(--hair); }}
+[data-testid="stSidebar"] * {{ color: var(--ink) !important; }}
+.brand-card {{ background: linear-gradient(150deg, #175868 0%, #0f4c5c 55%, #0b3a47 100%);
+  border-radius: 18px; padding:.95rem 1rem; margin:.2rem .1rem .35rem; position:relative; overflow:hidden; }}
+.brand-card::after {{ content:""; position:absolute; width:130px; height:130px; border-radius:50%;
+  border:22px solid rgba(255,255,255,.05); top:-45px; left:-45px; }}
+.brand-row {{ display:flex; align-items:center; gap:.6rem; position:relative; }}
+.brand-mark {{ width:42px; height:42px; flex:none; border-radius:12px; background: rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.28); display:flex; align-items:center; justify-content:center;
+  font-size:1.25rem; font-weight:800; color:#fff !important; }}
+.brand-name {{ font-size:.95rem; font-weight:800; color:#f4f8f8 !important; }}
+.brand-sub {{ font-size:.55rem; color:#a8c3c3 !important; margin-top:.14rem; line-height:1.75; }}
+.micro-label {{ font-size:.58rem; color:var(--faint) !important; font-weight:800; letter-spacing:.12em;
+  margin:.95rem .35rem .32rem; }}
+[data-testid="stSidebar"] [role="radiogroup"] {{ gap:.32rem; }}
 [data-testid="stSidebar"] [role="radiogroup"] label {{ display:flex; align-items:center; gap:.5rem;
-  padding:.4rem .6rem; border-radius:8px; font-size:.8rem !important; cursor:pointer;
-  color:#c2cfcf !important; border:1px solid transparent; transition: background .15s ease, border-color .15s ease; }}
-[data-testid="stSidebar"] [role="radiogroup"] label:hover {{ background: rgba(255,255,255,.055); }}
+  width:100%; padding:.44rem .65rem; border-radius:11px; font-size:.76rem !important; cursor:pointer;
+  color:var(--ink) !important; background:#fff; border:1px solid var(--hair);
+  transition: all .15s ease; }}
+[data-testid="stSidebar"] [role="radiogroup"] label:hover {{ border-color:var(--hair-strong); background:#fafbfc; }}
 [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {{
-  background: rgba(255,255,255,.11); border-color: rgba(255,255,255,.09); color:#f4f7f6 !important; font-weight:700; }}
+  background: var(--brand); border-color: var(--brand); color:#fff !important; font-weight:800;
+  box-shadow: 0 4px 14px rgba(15,76,92,.35); }}
+[data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) * {{ color:#fff !important; }}
 [data-testid="stSidebar"] [data-baseweb="radio"] {{ display:none; }}
-.side-foot {{ border-top:1px solid rgba(255,255,255,.13); margin-top:1.1rem; padding:.75rem .35rem 0;
-  font-size:.6rem; color:#8fa9a9 !important; line-height:1.85; }}
+.side-foot {{ border-top:1px solid var(--hair); margin-top:.85rem; padding:.7rem .3rem 0;
+  font-size:.58rem; color:var(--faint) !important; line-height:1.9; }}
 
-[data-baseweb="select"] > div {{ border-radius:9px !important; border-color: var(--hair-strong) !important; background: var(--surface) !important; }}
-.stSelectbox label, .stMultiSelect label, .stRadio > label {{ font-size:.7rem !important; color:var(--muted) !important; font-weight:700 !important; }}
-[data-baseweb="tag"] {{ background: var(--brand-soft) !important; color: var(--brand-deep) !important; border-radius:6px !important; }}
+/* ---------- widgets و chrome ---------- */
+[data-baseweb="select"] > div {{ border-radius:10px !important; border-color:var(--hair-strong) !important; background:#fff !important; }}
+.stSelectbox label, .stMultiSelect label, .stRadio > label {{ font-size:.68rem !important; color:var(--muted) !important; font-weight:700 !important; }}
+[data-baseweb="tag"] {{ background: var(--brand) !important; color:#fff !important; border-radius:7px !important; }}
+[data-baseweb="tag"] span {{ color:#fff !important; }}
 [data-testid="stToolbar"], [data-testid="stAppDeployButton"] {{ display:none !important; }}
 header[data-testid="stHeader"] {{ background: transparent; }}
-.src-note {{ font-size:.67rem; color:var(--muted); direction:rtl; text-align:right; line-height:1.85; }}
-.foot {{ border-top:1px solid var(--hair); padding-top:.55rem; margin-top:1.2rem; font-size:.62rem; color:var(--faint); }}
+.src-note {{ font-size:.65rem; color:var(--muted); direction:rtl; text-align:right; line-height:1.9; }}
+.foot {{ border-top:1px solid var(--hair); padding-top:.55rem; margin-top:1.1rem; font-size:.6rem; color:var(--faint); }}
 :focus-visible {{ outline:2px solid var(--brand); outline-offset:2px; border-radius:4px; }}
-[data-testid="stCaptionContainer"] {{ direction: rtl; text-align: right; }}
-.stTabs [data-baseweb="tab-list"] {{ direction: rtl; }}
+[data-testid="stVerticalBlockBorderWrapper"] {{ border-radius: var(--radius) !important; border-color: var(--hair) !important; box-shadow: var(--shadow); background: var(--surface); }}
+.stPlotlyChart {{ padding-top:.1rem; }}
+[data-testid="stCaptionContainer"] {{ direction:rtl; text-align:right; }}
+.stTabs [data-baseweb="tab-list"] {{ direction:rtl; }}
+::-webkit-scrollbar {{ width:9px; height:9px; }}
+::-webkit-scrollbar-thumb {{ background:#cfd2d8; border-radius:9px; }}
+::-webkit-scrollbar-track {{ background: transparent; }}
 </style>""", unsafe_allow_html=True)
+
+
 
 # ----------------- داده -----------------
 @st.cache_data
@@ -178,7 +219,7 @@ def build_map_svg(values_json: str, highlight: str | None = None) -> str:
                 pts = [P(lon, lat) for lon, lat, *_ in ring]
                 d_parts.append("M" + "L".join(f"{x:.1f},{y:.1f}" for x, y in pts) + "Z")
         d = "".join(d_parts)
-        hl = ' stroke="#e3645f" stroke-width="2.4"' if highlight == name else ' stroke="#f7fafa" stroke-width="0.9"'
+        hl = ' stroke="#e3645f" stroke-width="2.4"' if highlight == name else ' stroke="#ffffff" stroke-width="1"'
         tip = html.escape(f"{fa} — تورم سالانه: {v:.1f}٪" if v is not None else fa)
         parts.append(f'<path d="{d}" fill="{fill}"{hl} stroke-linejoin="round"><title>{tip}</title></path>')
     parts.append('</svg>')
@@ -188,9 +229,19 @@ def legend_html():
     return ('<div class="legend-wrap"><div class="legend-bar"></div>'
             '<div class="legend-labels"><span>کمتر</span><span>نرخ تورم سالانه</span><span>بیشتر</span></div></div>')
 
-def kpi(label, value, sub="", accent=False, neutral=False):
-    cls = "kpi" + (" accent" if accent else (" neutral" if neutral else ""))
-    return (f'<div class="{cls}"><div class="lbl">{label}</div>'
+def hero(eyebrow, title, sub, meta):
+    pills = "".join(
+        f'<span class="meta-pill"><span class="meta-dot{" gold" if gold else ""}"></span>{k}: <b>{v}</b></span>'
+        for k, v, gold in meta)
+    return (f'<div class="hero rtl"><span class="hero-eyebrow">{eyebrow}</span>'
+            f'<h1 class="hero-title">{title}</h1>'
+            f'<div class="hero-sub">{sub}</div>'
+            f'<div class="hero-meta">{pills}</div></div>')
+
+def kpi(label, value, sub="", tag="teal", tag_text="", hot=False):
+    cls = "kpi" + (" hot" if hot else "")
+    tag_html = f'<span class="tag {tag}">{tag_text}</span>' if tag_text else ""
+    return (f'<div class="{cls}"><div class="kpi-top"><span class="lbl">{label}</span>{tag_html}</div>'
             f'<div class="val">{value}</div><div class="sub">{sub}</div></div>')
 
 PLOT_FONT = dict(family="Vazirmatn, Tahoma, sans-serif", size=11.5, color="#3d4c53")
@@ -209,14 +260,14 @@ load_css()
 
 # ----------------- سایدبار -----------------
 with st.sidebar:
-    st.markdown('<div class="brand"><div class="brand-name">تورمِ استان‌ها</div><div class="brand-meta">گزارش آماری کاملاً آفلاین<br>شاخص قیمت مصرف‌کننده · ۳۱ استان ایران</div></div>', unsafe_allow_html=True)
-    st.markdown('<div class="micro-label">صفحات گزارش</div>', unsafe_allow_html=True)
-    page = st.radio("صفحه", ["۱) نمای کلی منطقه‌ای", "۲) رتبه‌بندی استان‌ها", "۳) روند تاریخی", "۴) دربارهٔ داده و نقشه"], label_visibility="collapsed")
+    st.markdown('''<div class="brand-card"><div class="brand-row"><div class="brand-mark">٪</div><div><div class="brand-name">تورم استان‌ها</div><div class="brand-sub">گزارش آماری کاملاً آفلاین<br>شاخص قیمت مصرف‌کننده · ۳۱ استان ایران</div></div></div></div>''', unsafe_allow_html=True)
+    st.markdown('<div class="micro-label">بخش‌های گزارش</div>', unsafe_allow_html=True)
+    page = st.radio("بخش", ["۱) نمای کلی منطقه‌ای", "۲) رتبه‌بندی استان‌ها", "۳) روند تاریخی", "۴) دربارهٔ داده و نقشه"], label_visibility="collapsed")
     st.markdown('<div class="micro-label">دامنهٔ داده</div>', unsafe_allow_html=True)
     scope = st.radio("دامنهٔ داده", ["خانوارهای کشور — نرخ تورم سالانه (۱۳۹۷ تا تیر ۱۴۰۵)",
                                     "خانوارهای شهری — تیر ۱۴۰۴ (ماهانه/نقطه‌ای/سالانه)"], label_visibility="collapsed")
     is_urban = scope.startswith("خانوارهای شهری")
-    st.markdown('<div class="side-foot">مأخذ: مرکز آمار ایران<br>بازنشر: irangaah.ir · data.gov.ir · iranstatis.com<br>هندسه: click_that_hood (MIT) · مرزهای تقریبی</div>', unsafe_allow_html=True)
+    st.markdown('<div class="side-foot">مأخذ: مرکز آمار ایران<br>بازنشر: irangaah.ir · data.gov.ir · iranstatis.com<br>نقشه: click_that_hood (MIT) · مرزهای تقریبی</div>', unsafe_allow_html=True)
 
 is_main = not is_urban
 NAT = fact  # main national-scope fact
@@ -229,7 +280,11 @@ period_options = list(dim_period.sort_values("sort_order").set_index("period_key
 period_keys = list(dim_period.sort_values("sort_order").period_key)
 
 if page.startswith("۱"):
-    st.markdown('<div class="rtl"><div class="eyebrow">مرکز آمار ایران · شاخص قیمت مصرف‌کننده (پایه ۱۴۰۰)</div><h1 class="report-title">نمای کلی منطقه‌ای — نرخ تورم سالانه استان‌ها</h1><div class="sub">میانگین ۱۲ ماه منتهی به دوره نسبت به ۱۲ ماه مشابه سال قبل، تفکیک به تفکیک استان</div></div>', unsafe_allow_html=True)
+    st.markdown(hero(
+        "گزارش آماری آفلاین · مرکز آمار ایران",
+        "نمای کلی منطقه‌ای — نرخ تورم سالانه استان‌ها",
+        "میانگین ۱۲ ماه منتهی به دوره نسبت به ۱۲ ماه مشابه سال قبل — تفکیک به تفکیک استان، بدون هیچ درخواست برخط.",
+        [("آخرین دادهٔ رسمی", "تیر ۱۴۰۵", True), ("پوشش", "۳۱ استان", False), ("پایه", "۱۴۰۰=۱۰۰", False)]), unsafe_allow_html=True)
     if is_main:
         sel = st.selectbox("دورهٔ آماری", range(len(period_keys)), format_func=lambda i: period_options[i], index=len(period_keys)-1)
         pkey = period_keys[sel]
@@ -248,30 +303,34 @@ if page.startswith("۱"):
     fa_of = dict(zip(dim_p.province, dim_p.name_persian))
     st.markdown(f'<div class="rtl src-note">دوره: <b>{plabel}</b> — مأخذ: مرکز آمار ایران</div>', unsafe_allow_html=True)
     c = st.columns(4)
-    c[0].markdown(kpi("نرخ تورم سالانه — کل کشور", fa_num(nat, 1, "٪"), "میانگین ۱۲ ماه منتهی به دوره"), unsafe_allow_html=True)
-    c[1].markdown(kpi("بالاترین استان", fa_num(pmax, 1, "٪"), fa_of[name_max], accent=True), unsafe_allow_html=True)
-    c[2].markdown(kpi("پایین‌ترین استان", fa_num(pmin, 1, "٪"), fa_of[name_min]), unsafe_allow_html=True)
-    c[3].markdown(kpi("اختلاف بیشترین−کمترین", fa_num(pmax - pmin, 1, " واحد درصد"), "گسترهٔ استانی تورم", neutral=True), unsafe_allow_html=True)
+    c[0].markdown(kpi("نرخ تورم سالانه — کل کشور", fa_num(nat, 1, "٪"), "میانگین ۱۲ ماه منتهی به دوره", tag="teal", tag_text="مرجع ملی"), unsafe_allow_html=True)
+    c[1].markdown(kpi("بالاترین استان", fa_num(pmax, 1, "٪"), fa_of[name_max], tag="coral", tag_text="بالاترین", hot=True), unsafe_allow_html=True)
+    c[2].markdown(kpi("پایین‌ترین استان", fa_num(pmin, 1, "٪"), fa_of[name_min], tag="slate", tag_text="پایین‌ترین"), unsafe_allow_html=True)
+    c[3].markdown(kpi("اختلاف بیشترین−کمترین", fa_num(pmax - pmin, 1, " واحد درصد"), "گسترهٔ استانی تورم", tag="gold", tag_text="دامنهٔ استانی"), unsafe_allow_html=True)
     st.markdown("")
     left, right = st.columns([3, 2])
     with left:
         svg = build_map_svg(json.dumps(values), None)
-        st.markdown(f'<div class="card">{svg}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="card"><div class="card-title">نقشهٔ همدیسی تورم سالانه</div><div class="card-sub">شدت رنگ = نرخ تورم · نگه‌داشتن نشانگر روی هر استان، مقدار را نشان می‌دهد</div>{svg}</div>', unsafe_allow_html=True)
         st.markdown(legend_html(), unsafe_allow_html=True)
     with right:
-        st.markdown('<div class="rtl"><h3>پنج استان پرتورم این دوره</h3></div>', unsafe_allow_html=True)
-        top5 = sorted(values.items(), key=lambda kv: -kv[1])[:5]
-        fig = go.Figure(go.Bar(x=[v for _, v in top5][::-1], y=[fa_of[k] for k, _ in top5][::-1],
-                               orientation="h", marker_color="#0f4c5c",
-                               text=[f"{v:.1f}٪" for _, v in top5][::-1], textposition="outside"))
-        fig.add_vline(x=nat, line_dash="dash", line_color="#e3645f", annotation_text="کشور", annotation_font_color="#e3645f")
-        fig.update_xaxes(range=[0, 95])
-        fig.update_layout(title="بالاترین نرخ‌ها نسبت به متوسط کشوری (خط مرجانی)")
-        st.plotly_chart(style_fig(fig, 300, margin_l=150), width="stretch")
-        st.markdown('<div class="rtl src-note">نقشه از فایل GeoJSON داخلی رندر می‌شود؛ هیچ کاشی/نقشهٔ آنلاین دریافت نمی‌شود. مرزها تقریبی و فاقد ارزش ثبتی هستند.</div>', unsafe_allow_html=True)
+        with st.container(border=True):
+            st.markdown('<div class="card-title">پنج استان پرتورم این دوره</div><div class="card-sub">نسبت به متوسط کشوری (خط مرجانی)</div>', unsafe_allow_html=True)
+            top5 = sorted(values.items(), key=lambda kv: -kv[1])[:5]
+            fig = go.Figure(go.Bar(x=[v for _, v in top5][::-1], y=[fa_of[k] for k, _ in top5][::-1],
+                                   orientation="h", marker_color="#0f4c5c",
+                                   text=[f"{v:.1f}٪" for _, v in top5][::-1], textposition="outside"))
+            fig.add_vline(x=nat, line_dash="dash", line_color="#e3645f", annotation_text="کشور", annotation_font_color="#e3645f")
+            fig.update_xaxes(range=[0, 95])
+            st.plotly_chart(style_fig(fig, 292, margin_l=150), width="stretch")
+        st.markdown('<div class="rtl src-note" style="margin-top:.45rem">نقشه از فایل GeoJSON داخلی رندر می‌شود؛ هیچ کاشی/نقشهٔ آنلاین دریافت نمی‌شود. مرزها تقریبی و فاقد ارزش ثبتی هستند.</div>', unsafe_allow_html=True)
 
 elif page.startswith("۲"):
-    st.markdown('<div class="rtl"><div class="eyebrow">مرکز آمار ایران · شاخص قیمت مصرف‌کننده (پایه ۱۴۰۰)</div><h1 class="report-title">رتبه‌بندی استان‌ها</h1><div class="sub">همهٔ ۳۱ استان — خط چین: متوسط کشوری · رنگ مرجانی: بالاتر از کشور</div></div>', unsafe_allow_html=True)
+    st.markdown(hero(
+        "تصویر مقایسه‌ای استان‌ها",
+        "رتبه‌بندی استان‌ها",
+        "همهٔ ۳۱ استان در دورهٔ انتخابی — خط چین: متوسط کشوری · رنگ مرجانی: بالاتر از کشور.",
+        [("استان‌ها", "۳۱", False), ("الگو", "رتبه‌بندی نزولی", False), ("مأخذ", "مرکز آمار ایران", True)]), unsafe_allow_html=True)
     if is_main:
         sel = st.selectbox("دورهٔ آماری", range(len(period_keys)), format_func=lambda i: period_options[i], index=len(period_keys)-1)
         pkey = period_keys[sel]; plabel = period_options[sel]
@@ -284,17 +343,24 @@ elif page.startswith("۲"):
         nat = {"تورم سالانه": float(national_u.inflation_annual_pct), "تورم نقطه‌به‌نقطه": float(national_u.inflation_yoy_pct), "تورم ماهانه": float(national_u.inflation_monthly_pct)}[metric]
         plabel = f"تیر ۱۴۰۴ (شهری) — {metric}"; metric_lbl = metric + " (٪)"
     d = d.sort_values("val", ascending=True)
-    colors = ["#e3645f" if v > nat else "#0f4c5c" for v in d.val]
+    colors = ["#df6a5c" if v > nat else "#124a5b" for v in d.val]
     fig = go.Figure(go.Bar(x=d.val, y=d.province_fa, orientation="h", marker_color=colors,
-                           text=[f"{v:.1f}٪" for v in d.val], textposition="outside"))
-    fig.add_vline(x=nat, line_dash="dash", line_color="#12333d", annotation_text="متوسط کشور", annotation_position="top")
-    fig.update_layout(title=f"{metric_lbl} — {plabel} (قرمز = بالاتر از متوسط کشوری)")
+                           text=[f"{v:.1f}٪" for v in d.val], textposition="outside",
+                           textfont=dict(size=10.5, color="#3d4c53")))
+    fig.add_vline(x=nat, line_dash="dash", line_color="#16202c", annotation_text="متوسط کشور", annotation_position="top",
+                  annotation_font=dict(size=10.5, color="#16202c"))
     fig.update_xaxes(title=metric_lbl)
-    st.plotly_chart(style_fig(fig, 780, margin_l=170), width="stretch")
+    with st.container(border=True):
+        st.markdown(f'<div class="card-title">{metric_lbl} — {plabel}</div><div class="card-sub">قرمز = بالاتر از متوسط کشوری · خط چین = متوسط کشور</div>', unsafe_allow_html=True)
+        st.plotly_chart(style_fig(fig, 730, margin_l=170), width="stretch")
     st.markdown('<div class="rtl src-note">خط چین: متوسط کل کشور. رنگ مرجانی یعنی استان بالاتر از متوسط کشور است.</div>', unsafe_allow_html=True)
 
 elif page.startswith("۳"):
-    st.markdown('<div class="rtl"><div class="eyebrow">سری زمانی ۱۳۹۷ تا تیر ۱۴۰۵ · خانوارهای کشور</div><h1 class="report-title">روند تاریخی نرخ تورم سالانه استان‌ها</h1><div class="sub">هشت نقطهٔ سالانه + خرداد و تیر ۱۴۰۵ (فواصل نامنظم — محور دسته‌ای)</div></div>', unsafe_allow_html=True)
+    st.markdown(hero(
+        "سری زمانی ۱۳۹۷ تا تیر ۱۴۰۵ · خانوارهای کشور",
+        "روند تاریخی نرخ تورم سالانه استان‌ها",
+        "هشت نقطهٔ سالانه + خرداد و تیر ۱۴۰۵ (فواصل نامنظم — روی محور دسته‌ای)؛ خط چین مرجانی = کل کشور.",
+        [("بازه", "۱۳۹۷–۱۴۰۵", False), ("نقاط", "۱۰ دوره", False), ("مأخذ", "مرکز آمار ایران", True)]), unsafe_allow_html=True)
     fa_of = dict(zip(dim_p.province, dim_p.name_persian))
     en_of = dict(zip(dim_p.name_persian, dim_p.province))
     default_sel = ["تهران", "ایلام", "کردستان", "سیستان و بلوچستان"]
@@ -310,20 +376,26 @@ elif page.startswith("۳"):
                              name="کل کشور", line=dict(dash="dash", color="#e3645f", width=3)))
     fig.update_xaxes(title="دوره (۸ سال سالانه + دو ماههٔ ۱۴۰۵)", ticktext=[label_of[k] for k in order], tickvals=order, type="category")
     fig.update_yaxes(title="نرخ تورم سالانه (٪)")
-    fig.update_layout(title="روند نرخ تورم سالانهٔ استان‌های منتخب در برابر کل کشور")
-    st.plotly_chart(style_fig(fig, 480), width="stretch")
+    with st.container(border=True):
+        st.markdown('<div class="card-title">روند نرخ تورم سالانه — استان‌های منتخب در برابر کل کشور</div><div class="card-sub">خط چین مرجانی = کل کشور</div>', unsafe_allow_html=True)
+        st.plotly_chart(style_fig(fig, 440), width="stretch")
     st.markdown('<div class="rtl src-note">توجه: هشت نقطهٔ نخست، میانگین سالانهٔ هر سال (خانوارهای کشور) است و دو نقطهٔ آخر، نرخ سالانه در ماه‌های خرداد و تیر ۱۴۰۵؛ فواصل زمانی یکنواخت نیستند و روی محور دسته‌ای نمایش داده شده‌اند. قلهٔ تیر ۱۴۰۴ در این سری دیده نمی‌شود چون دادهٔ ماهانهٔ استانی به‌صورت رایگان در دسترس نیست (به «دربارهٔ داده» مراجعه کنید).</div>', unsafe_allow_html=True)
     delta = NAT[NAT.period_key.isin(["1397","1404"])].pivot(index="province", columns="period_key", values="inflation_annual_pct")
     delta["change"] = delta["1404"] - delta["1397"]
     fig2 = go.Figure(go.Bar(x=[fa_of[p] for p in delta.sort_values("change").index],
                             y=delta.sort_values("change").change,
                             marker_color="#0f4c5c"))
-    fig2.update_layout(title="تغییر نرخ تورم سالانه از ۱۳۹۷ تا ۱۴۰۴ (واحد درصد)")
     fig2.update_yaxes(title="تغییر (واحد درصد)")
-    st.plotly_chart(style_fig(fig2, 360), width="stretch")
+    with st.container(border=True):
+        st.markdown('<div class="card-title">تغییر نرخ تورم سالانه از ۱۳۹۷ تا ۱۴۰۴</div><div class="card-sub">همهٔ استان‌ها صعود کرده‌اند — مقدار = اختلاف واحد درصد</div>', unsafe_allow_html=True)
+        st.plotly_chart(style_fig(fig2, 330), width="stretch")
 
 else:  # دربارهٔ داده و نقشه
-    st.markdown('<div class="rtl"><div class="eyebrow">شفافیت و انتساب</div><h1 class="report-title">دربارهٔ داده و نقشه</h1><div class="sub">منبع ارقام، هندسه، محدودیت‌ها، مجوزها و روش‌شناسی</div></div>', unsafe_allow_html=True)
+    st.markdown(hero(
+        "شفافیت و انتساب",
+        "دربارهٔ داده و نقشه",
+        "منبع ارقام، هندسهٔ نقشه، محدودیت‌ها، مجوزها و روش‌شناسی — همهٔ چیزهایی که برای استناد لازم دارید.",
+        [("داده", "مرکز آمار ایران", True), ("هندسه", "GeoJSON داخلی", False), ("به‌روزرسانی", "تیر ۱۴۰۵", False)]), unsafe_allow_html=True)
     st.markdown("""<div class="card prose rtl">
 <h3>این گزارش چیست؟</h3>
 <p>گزارش گرافیکی <b>کاملاً آفلاین</b> از <b>نرخ تورم به تفکیک ۳۱ استان ایران</b> برای استفادهٔ آموزشی/آزمایشی در Power BI و ارائهٔ نمونه‌کار. بدون هیچ tile، CDN یا فراخوانی شبکه در زمان اجرا. اعداد، آمار رسمی تورم هستند (نه فروش/سفارش/تیکت و نه دادهٔ بازار).</p>

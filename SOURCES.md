@@ -1,3 +1,6 @@
+<div dir="rtl">
+<style>pre,code,kbd,samp{direction:ltr;text-align:left;unicode-bidi:embed}</style>
+
 # منابع داده و انتساب (SOURCES) — پروژهٔ ۴
 
 > تاریخ بازبینی: ۲۶ نوامبر ۲۰۲۶ (۵ آذر ۱۴۰۵) | همهٔ دسترسی‌ها همان تاریخ انجام شده‌اند.
@@ -56,3 +59,5 @@ Vazirmatn (نسخهٔ variable از Google Fonts، وزن ۱۰۰–۹۰۰) — *
 ## ۶) ابزارها
 
 Python 3.13 • Streamlit • pandas • plotly • unittest • Playwright (فقط برای اسکرین‌شات preview.png) — هیچ‌کدام در زمان اجرای اپ نیاز به شبکه ندارند.
+
+</div>

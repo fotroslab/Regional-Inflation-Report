@@ -1,3 +1,6 @@
+<div dir="rtl">
+<style>pre,code,kbd,samp{direction:ltr;text-align:left;unicode-bidi:embed}</style>
+
 # راهنمای ساخت گزارش در Power BI Desktop — گام‌به‌گام (فارسی)
 
 > نیازمند: **Power BI Desktop (ویندوز)**. خروجی این پروژه شامل `.pbix` نیست؛ این راهنما تنها سند اجرایی ساخت آن است.
@@ -65,3 +68,5 @@
 ## ۱۰) صداقت محتوا
 - هیچ عددی از فروش/سفارش/تیکت در مدل نیست؛ اگر اضافه شد، گزارش معنای دیگری می‌گیرد و باید VALIDATION/README بازنوشت شود.
 - انتساب نقشه (click_that_hood MIT + ODbL احتمالی OSM) در صفحهٔ «دربارهٔ داده» **الزامی** است.
+
+</div>

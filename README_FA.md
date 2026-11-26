@@ -1,3 +1,6 @@
+<div dir="rtl">
+<style>pre,code,kbd,samp{direction:ltr;text-align:left;unicode-bidi:embed}</style>
+
 # پروژهٔ ۴ — گزارش آفلاین تورم استان‌های ایران 🗺️
 
 > تاریخ: ۱۴۰۵/۰۹/۰۵ (۲۰۲۶-11-26) | پوشه: `project_04_regional_offline_map/` | اپ زندهٔ این محیط: **پورت ۸۵۰۵**
@@ -36,6 +39,8 @@ python3 -m json.tool report/theme.json > /dev/null   # اعتبار JSON تم
 project_04_regional_offline_map/
 ├── app.py                     # اپ Streamlit (۴ صفحه، FA/RTL، نقشهٔ SVG داخلی)
 ├── requirements.txt
+├── .streamlit/config.toml   # gatherUsageStats = false (بدون تله‌متری)
+├── .gitignore               # شامل .streamlit/machine_id_v4
 ├── README_FA.md               # همین فایل
 ├── PORTFOLIO_CASE_STUDY_EN.md # مطالعهٔ موردی انگلیسی
 ├── VALIDATION.md / LIMITATIONS.md / SOURCES.md
@@ -61,6 +66,7 @@ project_04_regional_offline_map/
     ├── preview.png            # اسکرین‌شات واقعی — نمای کلی (اپ زنده، پورت ۸۵۰۵)
     ├── preview_ranking.png    # اسکرین‌شات — رتبه‌بندی استان‌ها
     ├── preview_trend.png      # اسکرین‌شات — روند تاریخی
+    ├── preview_about.png      # اسکرین‌شات — صفحهٔ دربارهٔ داده
     └── fonts/Vazirmatn-*.woff2
 ```
 
@@ -87,3 +93,5 @@ project_04_regional_offline_map/
 - نقشه: Boundaries: click_that_hood (MIT License) — simplified; © OpenStreetMap contributors may apply (ODbL) for underlying boundaries.
 - داده: مرکز آمار ایران؛ بازنشر: irangaah.ir (مستند به data.gov.ir) و پیش‌نمایش iranstatis.com — ببینید SOURCES.md. ارقام متعلق به مرکز آمار ایران است.
 - فونت Vazirmatn: SIL OFL 1.1.
+
+</div>

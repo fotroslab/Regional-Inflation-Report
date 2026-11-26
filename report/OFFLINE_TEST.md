@@ -1,10 +1,14 @@
+<div dir="rtl">
+<style>pre,code,kbd,samp{direction:ltr;text-align:left;unicode-bidi:embed}</style>
+
 # چک‌لیست تست آفلاین (OFFLINE_TEST) — پروژهٔ ۴
 
 > هدف: اطمینان از اینکه بازکردن/رندر گزارش **هیچ درخواست شبکه‌ای** نمی‌سازد.
 > اجرا در: ویندوز (برای .pbix/Desktop) و لینوکس/مک (برای اپ Streamlit).
 
 ## الف) اپ Streamlit (این پروژه)
-1. اپ را اجرا کنید: `streamlit run app.py --server.port 8505`
+1. تله‌متری خاموش است: `.streamlit/config.toml` شامل `gatherUsageStats = false` است؛ در لاگ راه‌اندازی نباید خط «Collecting usage statistics» دیده شود و نباید هیچ درخواستی به `data.streamlit.io` برود. به‌علاوه `.gitignore` فایل `.streamlit/machine_id_v4` را نادیده می‌گیرد.
+2. اپ را اجرا کنید: `streamlit run app.py --server.port 8505`
 2. همهٔ منابع خارجی را قطع کنید: Wi-Fi off / airplane mode / قطع کابل.
 3. صفحه را Hard Reload کنید (Ctrl+Shift+R): باید کامل و بدون جای‌خالی رندر شود.
 4. DevTools → Network: پس از reload اول، **هیچ درخواستی** به میزبان‌های خارجی (tile, CDN, fonts.googleapis…) نباید باشد. تنها درخواست‌ها: خودِ `localhost:8505` (JS/CSS داخلی Streamlit).
@@ -35,3 +39,5 @@
 
 ## ه) وضعیت فعلی این پروژه (صادقانه)
 اتصال فیزیکی اینترنت در این محیط قطع **نشده**؛ آفلاین‌بودن «با طراحی + بررسی استاتیک» تأیید شده و تست گام‌به‌گام الف/ب برای Desktop نیازمند اجرای شماست.
+
+</div>
