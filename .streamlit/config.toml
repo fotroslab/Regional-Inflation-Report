@@ -1,0 +1,12 @@
+# تنظیمات محلی پروژهٔ ۴ — بدون تله‌متری
+[browser]
+gatherUsageStats = false
+
+[server]
+headless = true
+
+[theme]
+primaryColor = "#0f4c5c"
+backgroundColor = "#f7fafa"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#12333d"
