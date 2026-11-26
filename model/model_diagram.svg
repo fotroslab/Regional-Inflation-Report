@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 620" font-family="Vazirmatn, Tahoma, sans-serif">
+  <rect width="980" height="620" fill="#f7fafa"/>
+  <text x="490" y="38" text-anchor="middle" font-size="22" font-weight="800" fill="#0f4c5c">مدل ستاره‌ای — نرخ تورم استان‌های ایران</text>
+  <text x="490" y="60" text-anchor="middle" font-size="12" fill="#48666f">dim_province و dim_period در اطراف fact اصلی | روابط یک‌به‌چند، تک‌جهته</text>
+
+  <!-- dim_province -->
+  <g>
+    <rect x="30" y="130" rx="12" width="230" height="170" fill="#ffffff" stroke="#0f4c5c" stroke-width="2"/>
+    <rect x="30" y="130" rx="12" width="230" height="34" fill="#0f4c5c"/>
+    <text x="145" y="153" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">dim_province</text>
+    <text x="45" y="188" font-size="12.5" fill="#12333d">🔑 province (PK) — کلید انگلیسی</text>
+    <text x="45" y="212" font-size="12.5" fill="#12333d">name_persian — برچسب فارسی</text>
+    <text x="45" y="236" font-size="12.5" fill="#12333d">region_fa / region_en — نمایشی</text>
+    <text x="45" y="260" font-size="12.5" fill="#12333d">۳۱ ردیف</text>
+    <text x="45" y="284" font-size="11" fill="#e3645f">کلید Join نقشه: ستون province</text>
+  </g>
+
+  <!-- dim_period -->
+  <g>
+    <rect x="720" y="130" rx="12" width="230" height="190" fill="#ffffff" stroke="#0f4c5c" stroke-width="2"/>
+    <rect x="720" y="130" rx="12" width="230" height="34" fill="#0f4c5c"/>
+    <text x="835" y="153" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">dim_period</text>
+    <text x="735" y="188" font-size="12.5" fill="#12333d">🔑 period_key (PK)</text>
+    <text x="735" y="210" font-size="12.5" fill="#12333d">period_label — خرداد ۱۴۰۵ …</text>
+    <text x="735" y="232" font-size="12.5" fill="#12333d">period_type — سالانه/ماهانه</text>
+    <text x="735" y="254" font-size="12.5" fill="#12333d">jalali_year · jalali_month (nullable)</text>
+    <text x="735" y="276" font-size="12.5" fill="#12333d">months_in_period · sort_order</text>
+    <text x="735" y="298" font-size="11" fill="#e3645f">Sort by Column: sort_order</text>
+  </g>
+
+  <!-- fact_inflation_province (center) -->
+  <g>
+    <rect x="335" y="140" rx="12" width="310" height="170" fill="#ffffff" stroke="#e3645f" stroke-width="2.5"/>
+    <rect x="335" y="140" rx="12" width="310" height="34" fill="#e3645f"/>
+    <text x="490" y="163" text-anchor="middle" font-size="14.5" font-weight="700" fill="#ffffff">fact_inflation_province</text>
+    <text x="350" y="198" font-size="12.5" fill="#12333d">🔗 province → dim_province</text>
+    <text x="350" y="220" font-size="12.5" fill="#12333d">🔗 period_key → dim_period</text>
+    <text x="350" y="246" font-size="13" font-weight="700" fill="#0f4c5c">inflation_annual_pct (نرخ تورم سالانه)</text>
+    <text x="350" y="272" font-size="11" fill="#48666f">Grain: استان × دوره — ۳۱۰ ردیف (خانوارهای کشور)</text>
+    <text x="350" y="292" font-size="11" fill="#48666f">مأخذ: مرکز آمار ایران (irangaah.ir ← data.gov.ir)</text>
+  </g>
+
+  <!-- relations lines -->
+  <line x1="260" y1="215" x2="335" y2="215" stroke="#48666f" stroke-width="2.5"/>
+  <text x="268" y="207" font-size="15" font-weight="700" fill="#12333d">1</text>
+  <text x="318" y="207" font-size="15" font-weight="700" fill="#12333d">*</text>
+  <line x1="645" y1="220" x2="720" y2="220" stroke="#48666f" stroke-width="2.5"/>
+  <text x="653" y="212" font-size="15" font-weight="700" fill="#12333d">*</text>
+  <text x="702" y="212" font-size="15" font-weight="700" fill="#12333d">1</text>
+
+  <!-- fact_inflation_urban_tir1404 -->
+  <g>
+    <rect x="30" y="390" rx="12" width="330" height="160" fill="#ffffff" stroke="#5b8f9c" stroke-width="2"/>
+    <rect x="30" y="390" rx="12" width="330" height="32" fill="#5b8f9c"/>
+    <text x="195" y="412" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">fact_inflation_urban_tir1404</text>
+    <text x="45" y="444" font-size="12.5" fill="#12333d">🔗 province → dim_province</text>
+    <text x="45" y="468" font-size="12.5" fill="#12333d">cpi_index · inflation_monthly_pct</text>
+    <text x="45" y="490" font-size="12.5" fill="#12333d">inflation_yoy_pct · inflation_annual_pct</text>
+    <text x="45" y="512" font-size="11" fill="#e3645f">تیر ۱۴۰۴ — خانوارهای شهری (هم‌جنس نیست!)</text>
+    <text x="45" y="532" font-size="11" fill="#48666f">مأخذ: مرکز آمار ایران (پیش‌نمایش iranstatis.com)</text>
+  </g>
+  <line x1="145" y1="300" x2="145" y2="390" stroke="#48666f" stroke-width="2.5"/>
+  <text x="153" y="330" font-size="15" font-weight="700" fill="#12333d">1</text>
+  <text x="153" y="382" font-size="15" font-weight="700" fill="#12333d">*</text>
+
+  <!-- national_inflation -->
+  <g>
+    <rect x="620" y="390" rx="12" width="330" height="140" fill="#ffffff" stroke="#5b8f9c" stroke-width="2" stroke-dasharray="6 4"/>
+    <rect x="620" y="390" rx="12" width="330" height="32" fill="#5b8f9c"/>
+    <text x="785" y="412" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">national_inflation (مرجع)</text>
+    <text x="635" y="444" font-size="12.5" fill="#12333d">🔗 period_key → dim_period</text>
+    <text x="635" y="468" font-size="12.5" fill="#12333d">inflation_annual_pct — نرخ رسمی کشور</text>
+    <text x="635" y="490" font-size="11" fill="#48666f">۱۰ مقدار — خط مرجع نمودارها؛ نه‌برای میانگین‌گیری استانی</text>
+    <text x="635" y="512" font-size="11" fill="#48666f">+ national_urban_tir1404 (۱ ردیف، مرجع شهری)</text>
+  </g>
+  <line x1="835" y1="320" x2="835" y2="390" stroke="#48666f" stroke-width="2.5"/>
+  <text x="843" y="350" font-size="15" font-weight="700" fill="#12333d">1</text>
+  <text x="843" y="382" font-size="15" font-weight="700" fill="#12333d">*</text>
+
+  <text x="490" y="600" text-anchor="middle" font-size="11.5" fill="#5b7178">ستاره‌ای: همهٔ فیلترها از dimها به factها؛ هیچ Relationship مستقیم بین factها نسازید. • factها روی dim_province/dim_period متحد می‌شوند.</text>
+</svg>

@@ -1,0 +1,51 @@
+-- معیارهای DAX — پروژهٔ ۴ (نرخ تورم سالانهٔ استانی)
+-- ⚠️ این فایل در موتور واقعی DAX اجرا نشده است؛ صرفاً بازبینی و نمونه.
+-- همهٔ معیارها روی fact_inflation_province و dim_period/dim_province تعریف می‌شوند.
+
+نرخ تورم سالانه :=
+AVERAGE ( fact_inflation_province[inflation_annual_pct] )
+
+بیشترین تورم استان :=
+MAXX ( VALUES ( dim_province[province] ), [نرخ تورم سالانه] )
+
+کمترین تورم استان :=
+MINX ( VALUES ( dim_province[province] ), [نرخ تورم سالانه] )
+
+گسترهٔ استانی (max − min) :=
+[بیشترین تورم استان] - [کمترین تورم استان]
+
+نرخ کشور (دورهٔ انتخابی) :=
+CALCULATE (
+    AVERAGE ( national_inflation[inflation_annual_pct] ),
+    TREATAS ( VALUES ( dim_period[period_key] ), national_inflation[period_key] )
+)
+
+اختلاف با کشور (واحد درصد) :=
+[نرخ تورم سالانه] - [نرخ کشور (دورهٔ انتخابی)]
+
+بالاتر از کشور؟ :=
+IF ( [نرخ تورم سالانه] > [نرخ کشور (دورهٔ انتخابی)], 1, 0 )
+
+رتبهٔ تورم استان :=
+RANKX ( ALL ( dim_province[province] ), [نرخ تورم سالانه],, DESC, DENSE )
+
+میانگین سادهٔ استانی :=
+AVERAGEX ( VALUES ( dim_province[province] ), [نرخ تورم سالانه] )
+
+نکته: میانگین سادهٔ استانی ≠ نرخ کشور (کشور وزنی است). برای KPI «کشور» همیشه از measure «نرخ کشور» استفاده کنید.
+
+تعداد استان‌ها :=
+DISTINCTCOUNT ( dim_province[province] )
+
+-- تیر ۱۴۰۴ شهری (fact مجزا)
+تورم سالانهٔ شهری تیر ۱۴۰۴ :=
+AVERAGE ( fact_inflation_urban_tir1404[inflation_annual_pct] )
+
+تورم ماهانهٔ شهری تیر ۱۴۰۴ :=
+AVERAGE ( fact_inflation_urban_tir1404[inflation_monthly_pct] )
+
+تورم نقطه‌به‌نقطه شهری تیر ۱۴۰۴ :=
+AVERAGE ( fact_inflation_urban_tir1404[inflation_yoy_pct] )
+
+شاخص قیمت شهری تیر ۱۴۰۴ :=
+AVERAGE ( fact_inflation_urban_tir1404[cpi_index] )

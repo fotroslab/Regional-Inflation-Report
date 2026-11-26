@@ -1,0 +1,43 @@
+{
+  "name": "Regional Offline Fa",
+  "dataColors": [
+    "#0f4c5c",
+    "#e3645f",
+    "#2e6b7e",
+    "#5b8f9c",
+    "#8db4bb",
+    "#bcd4d6",
+    "#12333d",
+    "#7a2e2a"
+  ],
+  "background": "#f7fafa",
+  "foreground": "#0f4c5c",
+  "tableAccent": "#e3645f",
+  "good": "#0f4c5c",
+  "neutral": "#8db4bb",
+  "bad": "#e3645f",
+  "maximum": "#0f4c5c",
+  "center": "#8db4bb",
+  "minimum": "#e8f1f1",
+  "null": "#dfe9e9",
+  "textClasses": {
+    "title": { "fontFace": "Vazirmatn, Tahoma", "fontSize": 20, "color": "#0f4c5c" },
+    "header": { "fontFace": "Vazirmatn, Tahoma", "fontSize": 13, "bold": true, "color": "#12333d" },
+    "label": { "fontFace": "Vazirmatn, Tahoma", "fontSize": 11, "color": "#12333d" },
+    "callout": { "fontFace": "Vazirmatn, Tahoma", "fontSize": 32, "bold": true, "color": "#0f4c5c" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#ffffff" } } }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#dfe9e9" } }, "radius": 12 }]
+      }
+    },
+    "shapeMap": {
+      "*": {
+        "fill": [{ "show": true }],
+        "labels": [{ "show": false }]
+      }
+    }
+  }
+}
